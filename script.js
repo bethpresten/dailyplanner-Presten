@@ -1,11 +1,9 @@
 $(document).ready(function () {
-    console.log("This is loading!")
+    // console.log("This is loading!")
     // dom variables
     var timeBlockContainer = $(".time-block");
-    var workHours = ["9:00AM", "10:00AM", "11:00AM", "12:00PM", "1:00pm", "2:00PM", "3:00PM", "4:00PM", "5:00PM"]
+    var workHours = ["9:00AM", "10:00AM", "11:00AM", "12:00PM", "1:00pm", "2:00PM", "3:00PM", "4:00PM", "5:00PM"];
     var currentHour = moment().format("H");
-
-
 
     $("#currentDay").text(moment().format("dddd, MMMM Do, YYYY"));
 
@@ -21,29 +19,30 @@ $(document).ready(function () {
 
         rowHourEl.text(workHours[i]);
         if (workHours > currentHour) {
-            $(rowHourEl).css(".future");
+            $(textInput).addClass("past");
         }
         else if (workHours < currentHour) {
-            $(rowHourEl).css(".past");
+            $(textInput).addClass("future");
         }
         else {
-            $(rowHourEl).css(".present");
+            $(textInput).addClass("present");
         }
 
         var saveBtn = $("<button>").attr("class", "col-sm-1").text("save");
-        rowTimeEl.append(saveBtn)
+        rowTimeEl.append(saveBtn);
 
         saveBtn.on("click", function () {
             var hourSchedule = $(this).siblings("input");
             localStorage.setItem(rowHourEl, hourSchedule());
             console.log(saveBtn);
+
         })
     }
 
     //function code
 
     //event listeners
-})
+});
 
 
 
