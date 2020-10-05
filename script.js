@@ -6,6 +6,7 @@ $(document).ready(function () {
     var currentHour = moment().format("H");
 
 
+
     $("#currentDay").text(moment().format("dddd, MMMM Do, YYYY"));
 
     // for loop to create the row time blocks
@@ -13,19 +14,36 @@ $(document).ready(function () {
         // js variables
         var rowTimeEl = $("<div>").addClass("row time-block");
         var rowHourEl = $("<div>").addClass("hour col-sm-1").attr("id", workHours[i]);
-        var textInput = $("<textarea>").addClass("col-sm-10");
-        var saveBtn = $("#saveBtn");
-        rowHourEl.text(workHours[i]);
-
-
-
-
+        var textInput = $("<input>").addClass("col-sm-10");
 
         rowTimeEl.append(rowHourEl, textInput);
         timeBlockContainer.append(rowTimeEl);
+
+        rowHourEl.text(workHours[i]);
+        if (workHours > currentHour) {
+            $(rowHourEl).css(".future");
+        }
+        else if (workHours < currentHour) {
+            $(rowHourEl).css(".past");
+        }
+        else {
+            $(rowHourEl).css(".present");
+        }
+
+        var saveBtn = $("<button>").attr("class", "col-sm-1").text("save");
+        rowTimeEl.append(saveBtn)
+
+        saveBtn.on("click", function () {
+            var hourSchedule = $(this).siblings("input");
+            localStorage.setItem(rowHourEl, hourSchedule());
+            console.log(saveBtn);
+        })
     }
 
     //function code
 
     //event listeners
 })
+
+
+
