@@ -3,6 +3,9 @@ Work Day Scheduler
 Screenshot:
 ![Image of final product][./assets/workday.png]
 
+Link to deployed website:
+https://bethpresten.github.io/dailyplanner-Presten/
+
 Use:
 A user has the ability to schedule or log the events of his/her work day. Time is color-coded based on whether it's in the past, present, or future.
 
